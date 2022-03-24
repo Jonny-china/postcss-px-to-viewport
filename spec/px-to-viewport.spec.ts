@@ -250,6 +250,57 @@ describe('mediaQuery', () => {
 
     expect(processed).toBe(expected)
   })
+
+  it('should replace px inside media queries if opts.mediaQuery use RegExp', () => {
+    const options = {
+      mediaQuery: /min\-width/
+    }
+    const processed = postcss(pxToViewport(options)).process(
+      '@media (orientation-landscape) and (min-width: 500px) { .rule { font-size: 16px } }'
+    ).css
+    const expected =
+      '@media (orientation-landscape) and (min-width: 500px) { .rule { font-size: 5vw } }'
+
+    expect(processed).toBe(expected)
+  })
+
+  it('should not replace px inside media queries if opts.mediaQuery use RegExp', () => {
+    const options = {
+      mediaQuery: /min\-width/
+    }
+    const processed = postcss(pxToViewport(options)).process(
+      '@media (orientation-landscape) { .rule { font-size: 16px } }'
+    ).css
+    const expected =
+      '@media (orientation-landscape) { .rule { font-size: 16px } }'
+
+    expect(processed).toBe(expected)
+  })
+
+  it('should replace px inside media queries if opts.mediaQuery use Array of RegExp', () => {
+    const options = {
+      mediaQuery: [/min\-width/, /max\-width/]
+    }
+    const processed = postcss(pxToViewport(options)).process(
+      '@media (max-width: 500px) { .rule { font-size: 16px } }'
+    ).css
+    const expected = '@media (max-width: 500px) { .rule { font-size: 5vw } }'
+
+    expect(processed).toBe(expected)
+  })
+
+  it('should not replace px inside media queries if opts.mediaQuery use Array of RegExp', () => {
+    const options = {
+      mediaQuery: [/min\-width/, /max\-width/]
+    }
+    const processed = postcss(pxToViewport(options)).process(
+      '@media (orientation-landscape) { .rule { font-size: 16px } }'
+    ).css
+    const expected =
+      '@media (orientation-landscape) { .rule { font-size: 16px } }'
+
+    expect(processed).toBe(expected)
+  })
 })
 
 describe('propList', () => {

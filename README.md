@@ -139,7 +139,9 @@ Default Options:
   - If value is regexp, it checks to see if the selector matches the regexp.
     - `[/^body$/]` will match `body` but not `.body`
 - `minPixelValue` (Number) Set the minimum pixel value to replace.
-- `mediaQuery` (Boolean) Allow px to be converted in media queries.
+- `mediaQuery` (Boolean or Regexp or Array of Regexp) Allow px to be converted in media queries.
+  - If value is regexp, the matches media queries params will be converted.
+  - If value is array, the elements of the array are regexp.
 - `replace` (Boolean) replaces rules containing vw instead of adding fallbacks.
 - `exclude` (Regexp or Array of Regexp) Ignore some files like 'node_modules'
   - If value is regexp, will ignore the matches files.
@@ -155,7 +157,7 @@ Default Options:
 
 > `exclude` and `include` can be set together, and the intersection of the two rules will be taken.
 
-#### Rules prop
+#### `rules` option
 
 Customize rule overrides based on paths
 Example:
@@ -177,6 +179,24 @@ module.exports = {
           }
         ]
       ]
+    }
+  }
+}
+```
+
+#### `mediaQuery` option
+
+Translate only rules filtered by the mediaQuery option.
+Example:
+
+```js
+module.exports = {
+  plugins: {
+    // ...
+    '@jonny1994/postcss-px-to-viewport': {
+      // ...otherOptions
+      mediaQuery: /min\-width/, // or
+      mediaQuery: [/min\-width/, /max\-width/]
     }
   }
 }

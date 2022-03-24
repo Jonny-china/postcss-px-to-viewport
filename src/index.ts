@@ -8,7 +8,8 @@ import {
   declarationExists,
   validateParams,
   validateRule,
-  isRepeatRun
+  isRepeatRun,
+  checkMediaQuery
 } from './utils'
 import { Options } from './type'
 
@@ -40,6 +41,7 @@ function pxToViewport(options?: Options) {
 
   checkRegExpOrArray(opts, 'exclude')
   checkRegExpOrArray(opts, 'include')
+  checkMediaQuery(opts.mediaQuery!)
 
   const pxRegex = getUnitRegexp(opts.unitToConvert!)
   const satisfyPropList = createPropListMatcher(opts.propList ?? [])

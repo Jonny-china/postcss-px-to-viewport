@@ -72,7 +72,7 @@ export interface Options {
    *
    * @default false
    */
-  mediaQuery?: boolean
+  mediaQuery?: boolean | RegExp | RegExp[]
 
   /**
    * replaces rules containing vw instead of adding fallbacks.

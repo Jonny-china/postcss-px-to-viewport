@@ -139,7 +139,9 @@ $ pnpm add -D @jonny1994/postcss-px-to-viewport
   - 如果传入的值为正则表达式的话，那么就会依据 CSS 选择器是否匹配该正则
     - 例如 `selectorBlackList` 为 `[/^body$/]` , 那么 `body` 会被忽略，而 `.body` 不会
 - `minPixelValue` (Number) 设置最小的转换数值，如果为 1 的话，只有大于 1 的值会被转换
-- `mediaQuery` (Boolean) 媒体查询里的单位是否需要转换单位
+- `mediaQuery` (Boolean or Regexp or Array of Regexp) 媒体查询里的单位是否需要转换单位
+  - 如果值是一个正则表达式，那么匹配的媒体查询参数将被转换
+  - 如果传入的值是一个数组，那么数组里的值必须为正则
 - `replace` (Boolean) 是否直接更换属性值，而不添加备用属性
 - `exclude` (Array or Regexp) 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
   - 如果值是一个正则表达式，那么匹配这个正则的文件会被忽略
@@ -155,7 +157,7 @@ $ pnpm add -D @jonny1994/postcss-px-to-viewport
 
 > `exclude`和`include`是可以一起设置的，将取两者规则的交集。
 
-#### Rules
+#### `rules` option
 
 根据路径来自定义规则覆盖
 Example:
@@ -177,6 +179,24 @@ module.exports = {
           }
         ]
       ]
+    }
+  }
+}
+```
+
+#### `mediaQuery` option
+
+仅转换由 `mediaQuery` 参数过滤的规则
+Example:
+
+```js
+module.exports = {
+  plugins: {
+    // ...
+    '@jonny1994/postcss-px-to-viewport': {
+      // ...otherOptions
+      mediaQuery: /min\-width/, // 或者
+      mediaQuery: [/min\-width/, /max\-width/]
     }
   }
 }

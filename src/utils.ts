@@ -51,6 +51,16 @@ export function checkRegExpOrArray(
   )
 }
 
+export function checkMediaQuery(mediaQuery: boolean | RegExp | RegExp[]) {
+  if (!mediaQuery || typeof mediaQuery === 'boolean') return
+  if (mediaQuery instanceof RegExp) return
+  if (Array.isArray(mediaQuery) && mediaQuery.every((v) => v instanceof RegExp))
+    return
+  throw new Error(
+    'options.mediaQuery should be boolean or RegExp or Array of RegExp.'
+  )
+}
+
 export function toFixed(number: number, precision: number) {
   const multiplier = Math.pow(10, precision + 1)
   const wholeNumber = Math.floor(number * multiplier)
@@ -70,7 +80,16 @@ export function declarationExists(
   })
 }
 
-export function validateParams(params: string, mediaQuery: boolean) {
+export function validateParams(
+  params: string,
+  mediaQuery: boolean | RegExp | RegExp[]
+) {
+  if (mediaQuery instanceof RegExp) {
+    return mediaQuery.test(params)
+  }
+  if (Array.isArray(mediaQuery)) {
+    return mediaQuery.some((rule) => rule.test(params))
+  }
   return !params || (params && mediaQuery)
 }
 
