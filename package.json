@@ -1,7 +1,7 @@
 {
   "name": "@jonny1994/postcss-px-to-viewport",
   "description": "A CSS post-processor that converts px to viewport units (vw, vh, vmin, vmax).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jonny Chen <c1043870470@gmail.com>",
   "license": "MIT",
   "repository": {
