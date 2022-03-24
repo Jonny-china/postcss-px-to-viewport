@@ -168,7 +168,7 @@ module.exports = {
       // ...otherOptions
       rules: [
         [
-          /\/node_modules\/vant\//, // 路径的正则或者字符串
+          /\/node_modules\/vant\//, // The regex or string of the path
           (pixels, parsedVal, prop) => {
             if (prop.includes('font')) {
               return parsedval * 2 + 'vmin'
