@@ -253,7 +253,7 @@ describe('mediaQuery', () => {
 
   it('should replace px inside media queries if opts.mediaQuery use RegExp', () => {
     const options = {
-      mediaQuery: /min\-width/
+      mediaQuery: /min-width/
     }
     const processed = postcss(pxToViewport(options)).process(
       '@media (orientation-landscape) and (min-width: 500px) { .rule { font-size: 16px } }'
@@ -266,7 +266,7 @@ describe('mediaQuery', () => {
 
   it('should not replace px inside media queries if opts.mediaQuery use RegExp', () => {
     const options = {
-      mediaQuery: /min\-width/
+      mediaQuery: /min-width/
     }
     const processed = postcss(pxToViewport(options)).process(
       '@media (orientation-landscape) { .rule { font-size: 16px } }'
@@ -279,7 +279,7 @@ describe('mediaQuery', () => {
 
   it('should replace px inside media queries if opts.mediaQuery use Array of RegExp', () => {
     const options = {
-      mediaQuery: [/min\-width/, /max\-width/]
+      mediaQuery: [/min-width/, /max-width/]
     }
     const processed = postcss(pxToViewport(options)).process(
       '@media (max-width: 500px) { .rule { font-size: 16px } }'
@@ -291,7 +291,7 @@ describe('mediaQuery', () => {
 
   it('should not replace px inside media queries if opts.mediaQuery use Array of RegExp', () => {
     const options = {
-      mediaQuery: [/min\-width/, /max\-width/]
+      mediaQuery: [/min-width/, /max-width/]
     }
     const processed = postcss(pxToViewport(options)).process(
       '@media (orientation-landscape) { .rule { font-size: 16px } }'
@@ -803,7 +803,7 @@ describe('rules', () => {
     const expected = `.rule { font-size: 15vw }`
 
     const processed = postcss(
-      pxToViewport({ rules: [[/\/node_modules\//, (p) => p + 'vw']] })
+      pxToViewport({ rules: [[/\/node_modules\//, p => p + 'vw']] })
     ).process(basicCSS, {
       from: '/node_modules/main.css'
     }).css
@@ -815,7 +815,7 @@ describe('rules', () => {
     const expected = `.rule { font-size: 4.6875vw }`
 
     const processed = postcss(
-      pxToViewport({ rules: [[/\/node_modules\//, (p) => p + 'vw']] })
+      pxToViewport({ rules: [[/\/node_modules\//, p => p + 'vw']] })
     ).process(basicCSS, {
       from: '/example/main.css'
     }).css
@@ -827,7 +827,7 @@ describe('rules', () => {
     const expected = `.rule { font-size: 15vw }`
 
     const processed = postcss(
-      pxToViewport({ rules: [['node_modules', (p) => p + 'vw']] })
+      pxToViewport({ rules: [['node_modules', p => p + 'vw']] })
     ).process(basicCSS, {
       from: '/node_modules/main.css'
     }).css
@@ -839,7 +839,7 @@ describe('rules', () => {
     const expected = `.rule { font-size: 4.6875vw }`
 
     const processed = postcss(
-      pxToViewport({ rules: [['node_modules', (p) => p + 'vw']] })
+      pxToViewport({ rules: [['node_modules', p => p + 'vw']] })
     ).process(basicCSS, {
       from: '/example/main.css'
     }).css

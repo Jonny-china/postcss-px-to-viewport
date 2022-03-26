@@ -6,6 +6,8 @@
 // Any digit followed by px
 // !singlequotes|!doublequotes|!url()|pixelunit
 export function getUnitRegexp(unit: string) {
-  return new RegExp('"[^"]+"|\'[^\']+\'|url\\([^\\)]+\\)|(\\d*\\.?\\d+)' + unit, 'g');
+  return new RegExp(
+    '"[^"]+"|\'[^\']+\'|url\\([^\\)]+\\)|(\\d*\\.?\\d+)' + unit,
+    'g'
+  )
 }
-
