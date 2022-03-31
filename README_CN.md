@@ -1,6 +1,6 @@
 # postcss-px-to-viewport
 
-[![npm version](https://badge.fury.io/js/@jonny1994%2Fpostcss-px-to-viewport.svg)](https://badge.fury.io/js/@jonny1994%2Fpostcss-px-to-viewport)
+[![npm](https://img.shields.io/npm/v/@jonny1994/postcss-px-to-viewport)](https://www.npmjs.com/package/@jonny1994/postcss-px-to-viewport) ![npm](https://img.shields.io/npm/dm/@jonny1994/postcss-px-to-viewport) ![NPM](https://img.shields.io/npm/l/@jonny1994/postcss-px-to-viewport) ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@jonny1994/postcss-px-to-viewport/peer/postcss)
 
 [English](README.md) | 中文
 
